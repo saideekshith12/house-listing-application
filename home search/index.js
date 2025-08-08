@@ -28,17 +28,15 @@ const limiter = ratelimit({
     legacyHeaders: false,
 
 })
-const isProduction = process.env.NODE_ENV === 'production';
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: isProduction
-    ? "https://home-listing-application.vercel.app"  // no trailing slash!
-    : "http://localhost:5173",
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+    origin: "https://home-listing-application.vercel.app",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(cookieParser());
 app.use('/images', express.static(path.join(__dirname, 'public/uploads')));

@@ -33,6 +33,7 @@ const login = asyncHandler(async(req, res)=>{
         httpOnly: true,
         secure: true,
         maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "none",
     })
     res.status(200).json(new Api_success(200, "Login successfull"));
 })
