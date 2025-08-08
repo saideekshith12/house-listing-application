@@ -56,7 +56,7 @@ function RouteComponent() {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/owner/signup', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/owner/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

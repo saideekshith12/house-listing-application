@@ -38,7 +38,7 @@ function RouteComponent() {
   }
 
   try {
-    const api = new Api('http://localhost:8000/user/verify', 'POST', {
+    const api = new Api(`${import.meta.env.VITE_API_URL}/user/verify`, 'POST', {
       token
     });
 

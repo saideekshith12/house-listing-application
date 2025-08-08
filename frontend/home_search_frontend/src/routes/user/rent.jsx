@@ -36,7 +36,7 @@ function RouteComponent() {
     const fetchHouses = async () => {
       try {
         const token = localStorage.getItem('login');
-        const api = new Api('http://localhost:8000/houses/rent-all-houses', 'GET', token);
+        const api = new Api(`${import.meta.env.VITE_API_URL}/houses/rent-all-houses`, 'GET', token);
         const data = await api.Apihandle();
 
         if (!data || !data.success) {
@@ -57,7 +57,7 @@ function RouteComponent() {
   const fetchUserInterests = async () => {
     try {
       const token = localStorage.getItem('login');
-      const response = new Api('http://localhost:8000/user/interests', 'GET', null, token);
+      const response = new Api(`${import.meta.env.VITE_API_URL}/user/interests`, 'GET', null, token);
       const data = await response.Apihandle();
 
       if (data.success) {
@@ -81,7 +81,7 @@ function RouteComponent() {
 
     const token = localStorage.getItem('login');
 
-    const response = new Api("http://localhost:8000/houses/rent-house-search", "POST" , {
+    const response = new Api(`${import.meta.env.VITE_API_URL}/houses/rent-house-search`, "POST" , {
       city,
       area
     },token)
@@ -103,7 +103,7 @@ function RouteComponent() {
     seterror('');
 
     try {
-      const response = new Api('http://localhost:8000/user/profile', 'GET');
+      const response = new Api(`${import.meta.env.VITE_API_URL}/user/profile`, 'GET');
       const data = await response.Apihandle();
 
       if (!data.success) {
@@ -125,7 +125,7 @@ function RouteComponent() {
     seterror('');
 
     try {
-      const response = new Api('http://localhost:8000/user/interests', 'GET');
+      const response = new Api(`${import.meta.env.VITE_API_URL}/user/interests`, 'GET');
       const data = await response.Apihandle();
 
       if (!data.success) {
@@ -144,7 +144,7 @@ function RouteComponent() {
   const hanldelogout = async (e) => {
     e.preventDefault();
 
-    const api = new Api('http://localhost:8000/user/logout', 'POST');
+    const api = new Api(`${import.meta.env.VITE_API_URL}/user/logout`, 'POST');
     const data = await api.Apihandle();
 
     if (data.success) {
@@ -169,7 +169,7 @@ function RouteComponent() {
     const token = localStorage.getItem('login');
   
     try {
-      const response = new Api(`http://localhost:8000/houses/create-interest/${houseId}`, "POST", { data: true }, token);
+      const response = new Api(`${import.meta.env.VITE_API_URL}/houses/create-interest/${houseId}`, "POST", { data: true }, token);
       const data = await response.Apihandle();
   
       if (!data.success) {
@@ -192,7 +192,7 @@ function RouteComponent() {
   
       const token = localStorage.getItem('login');
   
-      const response = new Api(`http://localhost:8000/houses/single-house/${houseId}`,"GET",token)
+      const response = new Api(`${import.meta.env.VITE_API_URL}/houses/single-house/${houseId}`,"GET",token)
       const data = await response.Apihandle()
       if(!data.success){
         seterror(data.message)

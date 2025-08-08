@@ -53,7 +53,7 @@ function RouteComponent() {
 
   const hanldelogout = async (e) => {
     e.preventDefault();
-    const api = new Api('http://localhost:8000/owner/logout', 'POST');
+    const api = new Api(`${import.meta.env.VITE_API_URL}/owner/logout`, 'POST');
     const data = await api.Apihandle();
     if (data.success) {
       alert(data.message || 'Logged out successfully');
@@ -70,7 +70,7 @@ function RouteComponent() {
     setloading(true);
     seterror('');
     try {
-      const api = new Api('http://localhost:8000/owner/all-houses', 'GET');
+      const api = new Api(`${import.meta.env.VITE_API_URL}/owner/all-houses`, 'GET');
       const data = await api.Apihandle();
       if (data.success) {
         setproperties(data.data || []);
@@ -91,7 +91,7 @@ function RouteComponent() {
     setloading(true);
     seterror('');
     try {
-      const api = new Api('http://localhost:8000/owner/interests', 'GET');
+      const api = new Api(`${import.meta.env.VITE_API_URL}/owner/interests`, 'GET');
       const data = await api.Apihandle();
       if (data.success) {
         setinterestby(data.data || []);
@@ -112,7 +112,7 @@ function RouteComponent() {
     setloading(true);
     seterror('');
     try {
-      const api = new Api('http://localhost:8000/owner/profile', 'GET');
+      const api = new Api(`${import.meta.env.VITE_API_URL}/owner/profile`, 'GET');
       const data = await api.Apihandle();
       if (data.success) {
         setprofile(data.data || []);
@@ -173,7 +173,7 @@ const handleform = async (e) => {
 
     const token = localStorage.getItem('login'); 
 
-    const response = new Api("http://localhost:8000/owner/house-entry","POST" , formData,token, true)
+    const response = new Api(`${import.meta.env.VITE_API_URL}/owner/house-entry`,"POST" , formData,token, true)
 
     const data = await response.Apihandle()
 
