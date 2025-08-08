@@ -687,14 +687,14 @@ label {
   border: 2px solid #ddd;
   padding: 15px;
   border-radius: 15px;
-  width: 420px;
   background-color: #fdfdfd;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   display: inline-flex;
   flex-direction:  row;
   font-family: 'Segoe UI', sans-serif;
   box-sizing: border-box;
-  height: 500px;
+  height: 900px;
+  width: 650px;
   margin-left: 20px;
   margin-top: 15px;
 
@@ -802,7 +802,7 @@ label {
   color: black;
   border-radius: 10px;
   box-sizing: border-box;
-  width: 230px;
+  width: 450px;
   padding: 10px;
 
 }

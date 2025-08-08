@@ -245,6 +245,7 @@ function RouteComponent() {
     extractedhouses.map((house, index) => (
               <div className='buy-card' key={house._id || index}>
                 <div>
+                   <img src={house.image} alt="House" className="house-main-image" />
                   <div className='title-9'>
                     <h2>{house.room} House for Sale In {house.area}</h2>
                     <h4 className='price-tag'>₹{house.price}</h4>
@@ -291,7 +292,9 @@ function RouteComponent() {
             houses.map((house, index) => (
               <div className='buy-card' key={house._id || index}>
                 <div>
+                 <img src={house.image} alt="House" className="house-main-image" />
                   <div className='title-9'>
+                    
                     <h2>{house.room} House for Sale In {house.area}</h2>
                     <h4 className='price-tag'>₹{house.price}</h4>
                   </div>
@@ -357,6 +360,7 @@ function RouteComponent() {
                 <p>Mobile: {item.owner.mobile_number}</p>
                 <h4>House Info:</h4>
                 <ul>
+                  <img src={item.house.image} alt="House" className="house-main-image" />
                   <li>Type: {item.house.type}</li>
                   <li>Room: {item.house.room}</li>
                   <li>Price: ₹{item.house.price}</li>

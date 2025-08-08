@@ -1,0 +1,15 @@
+# Node.js
+node_modules
+.env
+
+# Build outputs
+frontend/build
+home-search/public/uploads
+home-search/dist
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

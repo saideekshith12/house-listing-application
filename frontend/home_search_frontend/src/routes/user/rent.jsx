@@ -53,12 +53,26 @@ function RouteComponent() {
     fetchHouses();
   }, []);
 
-  useEffect(() => {
-  const saved = localStorage.getItem('interestedHouses');
-  if (saved) {
-    setInterestedHouses(JSON.parse(saved));
-  }
+ useEffect(() => {
+  const fetchUserInterests = async () => {
+    try {
+      const token = localStorage.getItem('login');
+      const response = new Api('http://localhost:8000/user/interests', 'GET', null, token);
+      const data = await response.Apihandle();
+
+      if (data.success) {
+        // Map to house ids only
+        const interestedIds = data.data.map(item => item.house._id);
+        setInterestedHouses(interestedIds);
+      }
+    } catch (error) {
+      console.error("Failed to fetch interests", error);
+    }
+  };
+
+  fetchUserInterests();
 }, []);
+
 
   const buysearch = async(e)=>{
     e.preventDefault()
@@ -226,6 +240,7 @@ function RouteComponent() {
     extractedhouses.map((house, index) => (
               <div className='buy-card' key={house._id || index}>
                 <div>
+                  <img src={house.image} alt="House" className="house-main-image" />
                   <div className='title-9'>
                     <h2>{house.room} House for Rent In {house.area}</h2>
                     <h4 className='price-tag'>₹{house.price}</h4>
@@ -272,6 +287,7 @@ function RouteComponent() {
             houses.map((house, index) => (
               <div className='buy-card' key={house._id || index}>
                 <div>
+                  <img src={house.image} alt="House" className="house-main-image" />
                   <div className='title-9'>
                     <h2>{house.room} House for Rent In {house.area}</h2>
                     <h4 className='price-tag'>₹{house.price}</h4>
