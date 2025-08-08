@@ -42,9 +42,9 @@ const ownerlogin = asynchandler(async (req, res) => {
 res.cookie('token', token, {
   httpOnly: true,
   maxAge: 24 * 60 * 60 * 1000, // 1 day
-  sameSite: 'Lax',             // ✅ recommended for local dev
-  secure: false                // ✅ should be true only in HTTPS (prod)
-})
+  sameSite: isProduction ? 'None' : 'Lax',
+  secure: isProduction // true on prod, false on localhost
+});
 
   res.status(200).json(
     new Api_success(200, "You are logged in successfully", {
