@@ -54,7 +54,7 @@ function RouteComponent() {
     }
 
     try {
-      const api = new Api('http://localhost:8000/user/login', 'POST', {
+      const api = new Api(`${import.meta.env.VITE_API_URL}/user/login`, 'POST', {
         email,
         password,
       });

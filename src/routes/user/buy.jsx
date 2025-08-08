@@ -37,7 +37,7 @@ function RouteComponent() {
     const fetchHouses = async () => {
       try {
         const token = localStorage.getItem('login');
-        const api = new Api('http://localhost:8000/houses/sell-all-houses', 'GET', token);
+        const api = new Api(`${import.meta.env.VITE_API_URL}/houses/sell-all-houses`, 'GET', token);
         const data = await api.Apihandle();
 
         if (!data || !data.success) {
@@ -58,7 +58,7 @@ function RouteComponent() {
   const fetchUserInterests = async () => {
     try {
       const token = localStorage.getItem('login');
-      const response = new Api('http://localhost:8000/user/interests', 'GET', null, token);
+      const response = new Api(`${import.meta.env.VITE_API_URL}/user/interests`, 'GET', null, token);
       const data = await response.Apihandle();
 
       if (data.success) {
@@ -83,7 +83,7 @@ function RouteComponent() {
 
     const token = localStorage.getItem('login');
 
-    const response = new Api("http://localhost:8000/houses/sell-house-search", "POST" , {
+    const response = new Api(`${import.meta.env.VITE_API_URL}/houses/sell-house-search`, "POST" , {
       city,
       area
     },token)
@@ -105,7 +105,7 @@ function RouteComponent() {
     seterror('');
 
     try {
-      const response = new Api('http://localhost:8000/user/profile', 'GET');
+      const response = new Api(`${import.meta.env.VITE_API_URL}/user/profile`, 'GET');
       const data = await response.Apihandle();
 
       if (!data.success) {
@@ -127,7 +127,7 @@ function RouteComponent() {
     seterror('');
 
     try {
-      const response = new Api('http://localhost:8000/user/interests', 'GET');
+      const response = new Api(`${import.meta.env.VITE_API_URL}/user/interests`, 'GET');
       const data = await response.Apihandle();
 
       if (!data.success) {
@@ -146,7 +146,7 @@ function RouteComponent() {
   const hanldelogout = async (e) => {
     e.preventDefault();
 
-    const api = new Api('http://localhost:8000/user/logout', 'POST');
+    const api = new Api(`${import.meta.env.VITE_API_URL}/user/logout`, 'POST');
     const data = await api.Apihandle();
 
     if (data.success) {
@@ -173,7 +173,7 @@ function RouteComponent() {
   const token = localStorage.getItem('login');
 
   try {
-    const response = new Api(`http://localhost:8000/houses/create-interest/${houseId}`, "POST", { data: true }, token);
+    const response = new Api(`${import.meta.env.VITE_API_URL}/houses/create-interest/${houseId}`, "POST", { data: true }, token);
     const data = await response.Apihandle();
 
     if (!data.success) {
@@ -195,7 +195,7 @@ function RouteComponent() {
 
     const token = localStorage.getItem('login');
 
-    const response = new Api(`http://localhost:8000/houses/single-house/${houseId}`,"GET",token)
+    const response = new Api(`${import.meta.env.VITE_API_URL}/houses/single-house/${houseId}`,"GET",token)
     const data = await response.Apihandle()
     if(!data.success){
       seterror(data.message)
@@ -245,6 +245,7 @@ function RouteComponent() {
     extractedhouses.map((house, index) => (
               <div className='buy-card' key={house._id || index}>
                 <div>
+                   <img src={house.image} alt="House" className="house-main-image" />
                   <div className='title-9'>
                     <h2>{house.room} House for Sale In {house.area}</h2>
                     <h4 className='price-tag'>₹{house.price}</h4>
@@ -291,7 +292,9 @@ function RouteComponent() {
             houses.map((house, index) => (
               <div className='buy-card' key={house._id || index}>
                 <div>
+                 <img src={house.image} alt="House" className="house-main-image" />
                   <div className='title-9'>
+                    
                     <h2>{house.room} House for Sale In {house.area}</h2>
                     <h4 className='price-tag'>₹{house.price}</h4>
                   </div>
@@ -357,6 +360,7 @@ function RouteComponent() {
                 <p>Mobile: {item.owner.mobile_number}</p>
                 <h4>House Info:</h4>
                 <ul>
+                  <img src={item.house.image} alt="House" className="house-main-image" />
                   <li>Type: {item.house.type}</li>
                   <li>Room: {item.house.room}</li>
                   <li>Price: ₹{item.house.price}</li>

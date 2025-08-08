@@ -18,7 +18,7 @@ function RouteComponent() {
         seterror('')
         setloading(true)
 
-        const response = new Api("http://localhost:8000/owner/forget-password", "POST" ,{email})
+        const response = new Api(`${import.meta.env.VITE_API_URL}/owner/forget-password`, "POST" ,{email})
         const data = await response.Apihandle()
         if(!data.success){
             seterror(data.message || "Sorry email cannot found")

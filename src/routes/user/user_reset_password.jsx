@@ -26,7 +26,7 @@ function RouteComponent() {
     seterror('')
     setlaoding(true)
 
-    const response = new Api("http://localhost:8000/user/reset-password" , "POST" , {email,password})
+    const response = new Api(`${import.meta.env.VITE_API_URL}/user/reset-password` , "POST" , {email,password})
     const data = await response.Apihandle()
     if(!data.success){
       seterror(data.message || "Invalid email")

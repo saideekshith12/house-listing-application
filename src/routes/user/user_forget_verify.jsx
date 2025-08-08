@@ -24,7 +24,7 @@ function RouteComponent() {
     setloading(true)
     seterror('')
 
-    const response = new Api("http://localhost:8000/user/verify-forget-password" , "POST" , {token})
+    const response = new Api(`${import.meta.env.VITE_API_URL}/user/verify-forget-password` , "POST" , {token})
     const data = await response.Apihandle()
     if(!data.success){
         seterror(data.message || "Invalid token")

@@ -53,7 +53,7 @@ function RouteComponent() {
 
   const hanldelogout = async (e) => {
     e.preventDefault();
-    const api = new Api('http://localhost:8000/owner/logout', 'POST');
+    const api = new Api(`${import.meta.env.VITE_API_URL}/owner/logout`, 'POST');
     const data = await api.Apihandle();
     if (data.success) {
       alert(data.message || 'Logged out successfully');
@@ -70,7 +70,7 @@ function RouteComponent() {
     setloading(true);
     seterror('');
     try {
-      const api = new Api('http://localhost:8000/owner/all-houses', 'GET');
+      const api = new Api(`${import.meta.env.VITE_API_URL}/owner/all-houses`, 'GET');
       const data = await api.Apihandle();
       if (data.success) {
         setproperties(data.data || []);
@@ -91,7 +91,7 @@ function RouteComponent() {
     setloading(true);
     seterror('');
     try {
-      const api = new Api('http://localhost:8000/owner/interests', 'GET');
+      const api = new Api(`${import.meta.env.VITE_API_URL}/owner/interests`, 'GET');
       const data = await api.Apihandle();
       if (data.success) {
         setinterestby(data.data || []);
@@ -112,7 +112,7 @@ function RouteComponent() {
     setloading(true);
     seterror('');
     try {
-      const api = new Api('http://localhost:8000/owner/profile', 'GET');
+      const api = new Api(`${import.meta.env.VITE_API_URL}/owner/profile`, 'GET');
       const data = await api.Apihandle();
       if (data.success) {
         setprofile(data.data || []);
@@ -173,7 +173,7 @@ const handleform = async (e) => {
 
     const token = localStorage.getItem('login'); 
 
-    const response = new Api("http://localhost:8000/owner/house-entry","POST" , formData,token, true)
+    const response = new Api(`${import.meta.env.VITE_API_URL}/owner/house-entry`,"POST" , formData,token, true)
 
     const data = await response.Apihandle()
 
@@ -231,30 +231,30 @@ const handleform = async (e) => {
       {viewMode === 'form' &&  (
         <form className="signup" onSubmit={handleform} encType="multipart/form-data" >
           <h2>Enter Your House Details</h2>
-          <div className="owner_signup"><label>Type</label><input value={type} onChange={e => settype(e.target.value)} /></div>
-          <div className="owner_signup"><label>Room</label><input value={room} onChange={e => setroom(e.target.value)} /></div>
-          <div className="owner_signup"><label>Price</label><input value={price} onChange={e => setprice(e.target.value)} /></div>
-          <div className="owner_signup"><label>Square Feet</label><input value={square_feet} onChange={e => setsquare_feet(e.target.value)} /></div>
-          <div className="owner_signup"><label>Loan</label><input value={loan} onChange={e => setloan(e.target.value)} /></div>
-          <div className="owner_signup"><label>Near By Places</label><input value={near_by_places} onChange={e => setnear_by_places(e.target.value)} /></div>
-          <div className="owner_signup"><label>Bedrooms</label><input value={bedrooms} onChange={e => setbedrooms(e.target.value)} /></div>
-          <div className="owner_signup"><label>Bathrooms</label><input value={bathrooms} onChange={e => setbathrooms(e.target.value)} /></div>
-          <div className="owner_signup"><label>Balcony</label><input value={balcony} onChange={e => setbalcony(e.target.value)} /></div>
-          <div className="owner_signup"><label>House Type</label><input value={house_type} onChange={e => sethouse_type(e.target.value)} /></div>
-          <div className="owner_signup"><label>Furnishing Status</label><input value={furnishing_status} onChange={e => setfurnishing_status(e.target.value)} /></div>
-          <div className="owner_signup"><label>Facing</label><input value={facing} onChange={e => setfacing(e.target.value)} /></div>
-          <div className="owner_signup"><label>Floor</label><input value={floor} onChange={e => setfloor(e.target.value)} /></div>
-          <div className="owner_signup"><label>Description</label><input value={description} onChange={e => setDescription(e.target.value)} /></div>
-          <div className="owner_signup"><label>Amenities</label><input value={amenities} onChange={e => setamenities(e.target.value)} /></div>
+          <div className="owner_signup"><label>Type</label><input value={type} onChange={e => settype(e.target.value)} placeholder='Enter sell or rent' /></div>
+          <div className="owner_signup"><label>Room</label><input value={room} onChange={e => setroom(e.target.value)} placeholder='Enter room type (1bhk,2bhk)' /></div>
+          <div className="owner_signup"><label>Price</label><input value={price} onChange={e => setprice(e.target.value)} placeholder='Enter price is greater than 0.' /></div>
+          <div className="owner_signup"><label>Square Feet</label><input value={square_feet} onChange={e => setsquare_feet(e.target.value)} placeholder='Enter square feet' /></div>
+          <div className="owner_signup"><label>Loan</label><input value={loan} onChange={e => setloan(e.target.value)} placeholder='yes or no' /></div>
+          <div className="owner_signup"><label>Near By Places</label><input value={near_by_places} onChange={e => setnear_by_places(e.target.value)} placeholder='Enter near by places' /></div>
+          <div className="owner_signup"><label>Bedrooms</label><input value={bedrooms} onChange={e => setbedrooms(e.target.value)} placeholder='Enter number of bedrooms' /></div>
+          <div className="owner_signup"><label>Bathrooms</label><input value={bathrooms} onChange={e => setbathrooms(e.target.value)} placeholder='Enter number of bathrooms'/></div>
+          <div className="owner_signup"><label>Balcony</label><input value={balcony} onChange={e => setbalcony(e.target.value)} placeholder='yes or no' /></div>
+          <div className="owner_signup"><label>House Type</label><input value={house_type} onChange={e => sethouse_type(e.target.value)} placeholder='Apartment , Villa , Individual , standalone' /></div>
+          <div className="owner_signup"><label>Furnishing Status</label><input value={furnishing_status} onChange={e => setfurnishing_status(e.target.value)} placeholder='Furnished or Unfurnished or Semi-furnished' /></div>
+          <div className="owner_signup"><label>Facing</label><input value={facing} onChange={e => setfacing(e.target.value)} placeholder='North , South , East , West' /></div>
+          <div className="owner_signup"><label>Floor</label><input value={floor} onChange={e => setfloor(e.target.value)} placeholder='Enter floor number' /></div>
+          <div className="owner_signup"><label>Description</label><input value={description} onChange={e => setDescription(e.target.value)} placeholder='Enter description' /></div>
+          <div className="owner_signup"><label>Amenities</label><input value={amenities} onChange={e => setamenities(e.target.value)} placeholder='Enter amenities' /></div>
           <div className="owner_signup"><label>Image</label>
           <input type="file" name='image'  accept="image/*" onChange={e => setimage(e.target.files[0])} /></div>
-          <div className="owner_signup"><label>State</label><input value={state} onChange={e => setstate(e.target.value)} /></div>
-          <div className="owner_signup"><label>District</label><input value={district} onChange={e => setdistrict(e.target.value)} /></div>
-          <div className="owner_signup"><label>Area</label><input value={area} onChange={e => setarea(e.target.value)} /></div>
-          <div className="owner_signup"><label>Colony</label><input value={colony} onChange={e => setcolony(e.target.value)} /></div>
-          <div className="owner_signup"><label>Street</label><input value={street} onChange={e => setstreet(e.target.value)} /></div>
-          <div className="owner_signup"><label>City</label><input value={city} onChange={e => setcity(e.target.value)} /></div>
-          <div className="owner_signup"><label>Pincode</label><input value={pincode} onChange={e => setpincode(e.target.value)} /></div>
+          <div className="owner_signup"><label>State</label><input value={state} onChange={e => setstate(e.target.value)} placeholder='Enter state' /></div>
+          <div className="owner_signup"><label>District</label><input value={district} onChange={e => setdistrict(e.target.value)} placeholder='Enter district' /></div>
+          <div className="owner_signup"><label>Area</label><input value={area} onChange={e => setarea(e.target.value)} placeholder='Enter area' /></div>
+          <div className="owner_signup"><label>Colony</label><input value={colony} onChange={e => setcolony(e.target.value)} placeholder='Enter colony' /></div>
+          <div className="owner_signup"><label>Street</label><input value={street} onChange={e => setstreet(e.target.value)} placeholder='Enter street' /></div>
+          <div className="owner_signup"><label>City</label><input value={city} onChange={e => setcity(e.target.value)} placeholder='Enter city' /></div>
+          <div className="owner_signup"><label>Pincode</label><input value={pincode} onChange={e => setpincode(e.target.value)} placeholder='Enter pincode' /></div>
 
           <button type="submit" className="signup_button">Submit</button>
         </form>
@@ -271,6 +271,7 @@ const handleform = async (e) => {
         <div className="card-list">
           {properties.map((property) => (
             <li className="card" key={property._id}>
+              <ul><img src={property.image} alt="House" className="house-main-image" /></ul>
               <h1 className="property-price">Price - ₹{property.price}</h1>
               <ul>Type - {property.type}</ul>
               <ul>Room - {property.room}</ul>
@@ -285,7 +286,7 @@ const handleform = async (e) => {
               <ul>Floor - {property.floor}</ul>
               <ul>Description - {property.description}</ul>
               <ul>Amenities - {property.amenities}</ul>
-              <ul>Image - {property.image}</ul>
+              
               <ul>State - {property.state}</ul>
               <ul>District - {property.district}</ul>
               <ul>Area - {property.area}</ul>
