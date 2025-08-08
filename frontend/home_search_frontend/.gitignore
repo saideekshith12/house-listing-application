@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -24,20 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 node_modules
-=======
-# Node.js
-node_modules
-.env
-
-# Build outputs
-frontend/build
-home-search/public/uploads
-home-search/dist
-
-# Logs
-*.log
-
-# OS files
-.DS_Store
-Thumbs.db
->>>>>>> e86709958cae83bd48d0d4b1389772c117f452ee
